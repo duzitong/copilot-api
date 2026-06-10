@@ -135,7 +135,11 @@ export const createMessages = async (
     headers["anthropic-beta"] = anthropicBeta
   }
 
-  consola.log(`<-- model: ${payload.model}`)
+  const reasoningEffort =
+    payload.output_config?.effort ?? payload.thinking?.budget_tokens
+  consola.log(
+    `<-- model: ${payload.model}${reasoningEffort !== undefined ? ` reasoning: ${reasoningEffort}` : ""}`,
+  )
 
   const response = await fetch(`${copilotBaseUrl(state)}/v1/messages`, {
     method: "POST",

@@ -47,6 +47,8 @@ export async function runServer(options: RunServerOptions): Promise<void> {
     initProxyFromEnv()
   }
 
+  consola.info("duzitong's copilot-api fork (260610v1)")
+
   state.verbose = options.verbose
   if (options.verbose) {
     consola.level = 5
